@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ Lightning Network Wallets Comparison</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <header>
+    <h1>⚡ Lightning Network Wallets</h1>
+    <p>Open-source PWA wallet comparison — filterable, sortable, comprehensive.</p>
+    <div class="badge">
+      Data sourced from <a href="https://stacker.news/items/1194605" target="_blank" rel="noopener">stacker.news</a> •
+      Open Source
+    </div>
+  </header>
+
+  <main>
+    <!-- Global Controls -->
+    <div class="controls">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Search wallets by name, feature, URL...">
+      </div>
+      <div class="filter-group" id="filter-chips">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Open Source Table -->
+    <section class="section">
+      <div class="section-header">
+        <h2>🔓 Open-Source PWA Wallets</h2>
+        <span class="count" id="count-openSource">0</span>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead id="thead-os"></thead>
+          <tbody id="tbody-openSource"></tbody>
+          <tr class="no-results" id="no-results-openSource">
+            <td colspan="12">No wallets match your filters. Try adjusting your search or clearing filters. ⚡</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Freemium Table -->
+    <section class="section">
+      <div class="section-header">
+        <h2>💰 Non-Open-Source Freemium</h2>
+        <span class="count" id="count-freemium">0</span>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead id="thead-fm"></thead>
+          <tbody id="tbody-freemium"></tbody>
+          <tr class="no-results" id="no-results-freemium">
+            <td colspan="12">No wallets match your filters. Try adjusting your search or clearing filters. ⚡</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Color Key -->
+    <div class="key">
+      <span style="color:var(--text-muted);font-weight:600;">KEY:</span>
+      <div class="key-item"><span class="key-dot green"></span> Yes / Supported</div>
+      <div class="key-item"><span class="key-dot yellow"></span> Optional / Both / Limited</div>
+      <div class="key-item"><span class="key-dot muted"></span> No / Unsupported</div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Built with ⚡ • Data from <a href="https://stacker.news/items/1194605" target="_blank" rel="noopener">stacker.news</a> •
+    <a href="https://github.com/wahid/lightning-wallets-comparison" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
