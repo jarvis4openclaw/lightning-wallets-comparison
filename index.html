@@ -81,5 +81,32 @@
   </footer>
 
   <script src="app.js"></script>
+
+  <!-- Donate Floating Button -->
+  <button id="donate-btn" class="donate-fab" aria-label="Donate">
+    <span class="donate-icon">⚡</span>
+    <span class="donate-text">Donate</span>
+  </button>
+
+  <!-- Donate Modal -->
+  <div id="donate-modal" class="donate-modal-overlay">
+    <div class="donate-modal">
+      <button class="donate-modal-close" aria-label="Close">&times;</button>
+      <div class="donate-modal-header">
+        <span class="donate-modal-icon">⚡</span>
+        <h3>Support This Project</h3>
+        <p>Scan to send Bitcoin via Lightning Network</p>
+      </div>
+      <div class="donate-modal-qr">
+        <img src="donate-qr.png" alt="Lightning Invoice QR Code" id="donate-qr-img">
+        <div class="donate-qr-glow"></div>
+      </div>
+      <div class="donate-modal-invoice">
+        <input type="text" id="donate-invoice" value="REPLACE_WITH_REAL_BOLT11_INVOICE" readonly>
+        <button id="donate-copy" class="donate-copy-btn">Copy Invoice</button>
+      </div>
+      <p class="donate-modal-note">Replace with your real BOLT11 invoice when ready.</p>
+    </div>
+  </div>
 </body>
 </html>

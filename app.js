@@ -338,3 +338,57 @@ document.addEventListener('DOMContentLoaded', () => {
   bindEvents();
   loadData();
 });
+
+// ⚡ Donate Modal
+function initDonateModal() {
+  const btn = document.getElementById('donate-btn');
+  const overlay = document.getElementById('donate-modal');
+  const closeBtn = overlay.querySelector('.donate-modal-close');
+  const copyBtn = document.getElementById('donate-copy');
+  const invoice = document.getElementById('donate-invoice');
+
+  function openModal() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openModal);
+
+  closeBtn.addEventListener('click', closeModal);
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  copyBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(invoice.value);
+      copyBtn.textContent = 'Copied!';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy Invoice';
+        copyBtn.classList.remove('copied');
+      }, 2000);
+    } catch {
+      invoice.select();
+      document.execCommand('copy');
+      copyBtn.textContent = 'Copied!';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy Invoice';
+        copyBtn.classList.remove('copied');
+      }, 2000);
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initDonateModal);

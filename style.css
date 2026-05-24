@@ -384,3 +384,226 @@ footer a:hover { text-decoration: underline; }
 .key-dot.green { background: var(--green); }
 .key-dot.yellow { background: var(--yellow); }
 .key-dot.muted { background: var(--text-muted); opacity: 0.5; }
+
+/* ——— Floating Donate Button ——— */
+.donate-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #f7931a, #ffb347);
+  color: #000;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(247, 147, 26, 0.4);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: donatePulse 2.5s ease-in-out infinite;
+}
+
+.donate-fab:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 32px rgba(247, 147, 26, 0.55);
+}
+
+.donate-fab:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.donate-icon {
+  font-size: 1.1rem;
+}
+
+@keyframes donatePulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(247, 147, 26, 0.4); }
+  50% { box-shadow: 0 8px 32px rgba(247, 147, 26, 0.6); }
+}
+
+/* ——— Donate Modal ——— */
+.donate-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.donate-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.donate-modal {
+  position: relative;
+  width: 90%;
+  max-width: 380px;
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 0 40px rgba(247, 147, 26, 0.12), 0 16px 48px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.donate-modal-overlay.open .donate-modal {
+  transform: translateY(0) scale(1);
+}
+
+.donate-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.6rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s, color 0.15s;
+}
+
+.donate-modal-close:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.donate-modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.donate-modal-icon {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.donate-modal-header h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.donate-modal-header p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.donate-modal-qr {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.donate-modal-qr img {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.donate-qr-glow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(247, 147, 26, 0.15), transparent 70%);
+  z-index: 1;
+}
+
+.donate-modal-invoice {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.donate-modal-invoice input {
+  flex: 1;
+  padding: 0.6rem 0.85rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  outline: none;
+}
+
+.donate-modal-invoice input:focus {
+  border-color: var(--accent);
+}
+
+.donate-copy-btn {
+  padding: 0.6rem 1.1rem;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius);
+  color: #000;
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter 0.15s;
+}
+
+.donate-copy-btn:hover {
+  filter: brightness(1.15);
+}
+
+.donate-copy-btn.copied {
+  background: var(--green);
+}
+
+.donate-modal-note {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Responsive donate */
+@media (max-width: 768px) {
+  .donate-fab {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+  }
+  .donate-modal {
+    padding: 1.5rem;
+  }
+  .donate-modal-qr img {
+    width: 160px;
+    height: 160px;
+  }
+}
