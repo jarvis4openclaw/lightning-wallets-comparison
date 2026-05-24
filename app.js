@@ -17,8 +17,6 @@ const state = {
 // ——— Column definitions ———
 const columns = [
   { key: 'name', label: 'Name', type: 'name' },
-  { key: 'link', label: 'Link', type: 'link' },
-  { key: 'repo', label: 'Repo', type: 'repo' },
   { key: 'fees', label: 'Fees', type: 'fees' },
   { key: 'selfHostable', label: 'Self-Hostable', type: 'bool' },
   { key: 'nonCustodial', label: 'Non-Custodial', type: 'custodial' },
@@ -28,6 +26,7 @@ const columns = [
   { key: 'ecash', label: 'Ecash', type: 'bool' },
   { key: 'customMint', label: 'Custom Mint', type: 'bool' },
   { key: 'multipleMints', label: 'Multiple Mints', type: 'bool' },
+  { key: 'repo', label: 'Submit', type: 'repo' },
 ];
 
 // ——— Load data ———
@@ -148,15 +147,9 @@ function renderCell(col, val, wallet) {
     return `<td class="name-cell ${css}"><a href="${wallet.link}" target="_blank" rel="noopener">${val}</a></td>`;
   }
 
-  if (col.type === 'link') {
-    return `<td>${linkBadge(val, '🌐')}</td>`;
-  }
-
   if (col.type === 'repo') {
-    if (val) {
-      return `<td class="repo-cell">${linkBadge(val, '📦')}</td>`;
-    }
-    return '<td class="repo-na">n/a</td>';
+    const issueUrl = `https://github.com/jarvis4openclaw/lightning-wallets-comparison/issues/new?title=Update:+${encodeURIComponent(wallet.name)}`;
+    return `<td class="repo-cell"><a href="${issueUrl}" target="_blank" rel="noopener">📝 Submit issue/update</a></td>`;
   }
 
   if (col.type === 'fees') {
@@ -213,13 +206,6 @@ function mixedBadge(val) {
   if (val === true) return '<span class="bool-true">✓ Yes</span>';
   if (val === false) return '<span class="bool-false">—</span>';
   return val; // string like "10 (limited)" or "∞"
-}
-
-function linkBadge(url, icon) {
-  // Extract display text from URL
-  let text = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-  if (text.length > 28) text = text.substring(0, 25) + '...';
-  return `<a href="${url}" target="_blank" rel="noopener">${icon} ${text}</a>`;
 }
 
 // ——— Render header ———
