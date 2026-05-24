@@ -361,7 +361,7 @@ function initDonateModal() {
       copyBtn.textContent = 'Copied!';
       copyBtn.classList.add('copied');
       setTimeout(() => {
-        copyBtn.textContent = 'Copy Invoice';
+        copyBtn.textContent = 'Copy Offer';
         copyBtn.classList.remove('copied');
       }, 2000);
     } catch {
@@ -370,7 +370,7 @@ function initDonateModal() {
       copyBtn.textContent = 'Copied!';
       copyBtn.classList.add('copied');
       setTimeout(() => {
-        copyBtn.textContent = 'Copy Invoice';
+        copyBtn.textContent = 'Copy Offer';
         copyBtn.classList.remove('copied');
       }, 2000);
     }

@@ -539,6 +539,29 @@ footer a:hover { text-decoration: underline; }
   z-index: 1;
 }
 
+.donate-modal-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0.55rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.donate-modal-address .donate-address-label {
+  font-size: 1.1rem;
+}
+
+.donate-modal-address code {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .donate-modal-invoice {
   display: flex;
   gap: 0.5rem;
