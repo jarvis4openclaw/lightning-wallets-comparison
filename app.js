@@ -6,6 +6,7 @@ const state = {
     selfHostable: null,
     nonCustodial: null,
     lnAddress: null,
+    liquid: null,
     nwc: null,
     ecash: null,
     autoWithdraw: null,
@@ -21,6 +22,7 @@ const columns = [
   { key: 'selfHostable', label: 'Self-Hostable', type: 'bool' },
   { key: 'nonCustodial', label: 'Non-Custodial', type: 'custodial' },
   { key: 'lnAddress', label: 'LN-address', type: 'mixed' },
+  { key: 'liquid', label: 'Liquid', type: 'bool' },
   { key: 'autoWithdraw', label: 'Auto-Withdraw', type: 'bool' },
   { key: 'nwc', label: 'NWC', type: 'bool' },
   { key: 'ecash', label: 'Ecash', type: 'bool' },
@@ -238,6 +240,7 @@ function renderFilters() {
     { key: 'selfHostable', label: 'Self-Hostable' },
     { key: 'nonCustodial', label: 'Non-Custodial' },
     { key: 'lnAddress', label: 'LN-address' },
+    { key: 'liquid', label: 'Liquid' },
     { key: 'nwc', label: 'NWC' },
     { key: 'ecash', label: 'Ecash' },
     { key: 'autoWithdraw', label: 'Auto-Withdraw' },
@@ -277,7 +280,12 @@ function handleFilter(key) {
     for (const k of Object.keys(state.filters)) {
       state.filters[k] = null;
     }
-  } else if (key === 'selfHostable' || key === 'nwc' || key === 'ecash' || key === 'autoWithdraw') {
+  } else if (key === 'lnAddress') {
+    // Toggle: null → true → false → null
+    if (state.filters[key] === null) state.filters[key] = true;
+    else if (state.filters[key] === true) state.filters[key] = false;
+    else state.filters[key] = null;
+  } else if (key === 'liquid' || key === 'selfHostable' || key === 'nwc' || key === 'ecash' || key === 'autoWithdraw') {
     // Toggle: null → true → false → null
     if (state.filters[key] === null) state.filters[key] = true;
     else if (state.filters[key] === true) state.filters[key] = false;
@@ -287,11 +295,6 @@ function handleFilter(key) {
     const cycle = [null, 'yes', 'optional', 'no', null];
     const idx = cycle.indexOf(state.filters[key]);
     state.filters[key] = cycle[(idx + 1) % cycle.length];
-  } else if (key === 'lnAddress') {
-    // Toggle: null → true → false → null
-    if (state.filters[key] === null) state.filters[key] = true;
-    else if (state.filters[key] === true) state.filters[key] = false;
-    else state.filters[key] = null;
   }
   renderAll();
 }
