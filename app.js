@@ -26,7 +26,7 @@ const columns = [
   { key: 'ecash', label: 'Ecash', type: 'bool' },
   { key: 'customMint', label: 'Custom Mint', type: 'bool' },
   { key: 'multipleMints', label: 'Multiple Mints', type: 'bool' },
-  { key: 'repo', label: 'Submit', type: 'repo' },
+  { key: 'repo', label: 'Repo', type: 'repo' },
 ];
 
 // ——— Load data ———
@@ -148,8 +148,12 @@ function renderCell(col, val, wallet) {
   }
 
   if (col.type === 'repo') {
-    const issueUrl = `https://github.com/jarvis4openclaw/lightning-wallets-comparison/issues/new?title=Update:+${encodeURIComponent(wallet.name)}`;
-    return `<td class="repo-cell"><a href="${issueUrl}" target="_blank" rel="noopener">📝 Submit issue/update</a></td>`;
+    if (val) {
+      const text = val.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      const display = text.length > 28 ? text.substring(0, 25) + '...' : text;
+      return `<td class="repo-cell"><a href="${val}" target="_blank" rel="noopener">📦 ${display}</a></td>`;
+    }
+    return '<td class="repo-na">n/a</td>';
   }
 
   if (col.type === 'fees') {
