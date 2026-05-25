@@ -48,7 +48,7 @@
     {
       "name": "CASHU Wallet",
       "link": "https://wallet.cashu.me",
-      "repo": "https://github.com/cashubtc/cashu-web-wallet",
+      "repo": "https://github.com/cashubtc/cashu.me",
       "fees": "Free",
       "selfHostable": true,
       "nonCustodial": "Optional",
